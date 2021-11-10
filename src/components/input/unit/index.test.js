@@ -10,10 +10,13 @@ describe('Input', () => {
   })
 
   it('should bind ref currently', () => {
-    const spy = jest.spyOn(HTMLInputElement.prototype, 'focus');
     const ref = React.createRef<HTMLInputElement>(null);
+    const spy = jest.spyOn(HTMLInputElement.prototype, 'focus');
+    // 更改函数实现
+    spy.mockImplementation((val) => val);
     mount(<Input ref={ref} />);
-    ref.current.focus();
-    expect(spy).toHaveBeenCalled();
+    ref.current.focus('mock');
+    expect(spy).toHaveBeenCalledWith('mock');
+    spy.mockRestore();
   })
 });

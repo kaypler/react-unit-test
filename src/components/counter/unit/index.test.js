@@ -18,7 +18,8 @@ describe(`Counter`, () => {
   it('could call componentDidMount', () => {
     const spy = jest.spyOn(Counter.prototype, 'componentDidMount');
     const wrapper = mount(<Counter />);
-    expect(spy).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalledTimes(1);
+    // 恢复原始实现
     spy.mockRestore();
   });
 
